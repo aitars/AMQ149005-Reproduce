@@ -17,6 +17,9 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
+<!-- Modified by Arno Schuerhoff -->
+
 <configuration xmlns="urn:activemq" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:activemq /schema/artemis-configuration.xsd">
    <core xmlns="urn:activemq:core">
 
@@ -62,7 +65,7 @@ under the License.
       <!-- Other config -->
 
       <security-settings>
-         <!--security for example queue-->
+         <!--security for all queues-->
          <security-setting match="#">
             <permission roles="guest" type="createDurableQueue"/>
             <permission roles="guest" type="deleteDurableQueue"/>
