@@ -30,6 +30,14 @@ under the License.
 
       <cluster-user>exampleUser</cluster-user>
 
+      <!--remoting-incoming-interceptors>
+         <class-name>com.havi.intercept.InterceptReplication</class-name>
+      </remoting-incoming-interceptors-->
+
+      <!--remoting-outgoing-interceptors>
+         <class-name>com.havi.intercept.InterceptReplication</class-name>
+      </remoting-outgoing-interceptors-->
+
       <cluster-password>secret</cluster-password>
 
       <ha-policy>

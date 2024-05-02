@@ -56,13 +56,22 @@ public class ReproduceAMQ149005Backup {
          connection = connectionFactory.createConnection();
 
          // Step 4. Create JMS Session with client acknowledgement
-         Session session = connection.createSession(false, Session.CLIENT_ACKNOWLEDGE);
+         Session session = connection.createSession(true, Session.CLIENT_ACKNOWLEDGE);
 
           // Step 5. Create a JMS MessageProducer and a MessageConsumer
          MessageProducer producer = session.createProducer(queue);
   
-         // Step 6. Send  message with properties size near to 490K to server #1, the live server
+         // Step 6. Send  message
          TextMessage message = session.createTextMessage("This is a text message.");
+
+         System.out.println("Sending message");
+         producer.send(message);
+         System.out.println("Message sent, commiting...");
+         session.commit();
+         System.out.println("Message committed.");
+
+         // Step 7. Send  message with properties size near to 490K to server #1, the live server
+         message = session.createTextMessage("This is a text message with bulk header.");
 
          StringBuilder strBuilder = new StringBuilder();
          for (int i = 0; i < 250736; ++i) { 
@@ -72,10 +81,12 @@ public class ReproduceAMQ149005Backup {
 
          System.out.println("Sending message with bulk header length " + 2*strBuilder.length());
          producer.send(message);
-         System.out.println("Message sent");
+         System.out.println("Message sent, commiting...");
+         session.commit();
+         System.out.println("Message committed.");
  
       } finally {
-         // Step 7. Be sure to close our resources!
+         // Step 8. Be sure to close our resources!
 
          if (connection != null) {
             connection.close();

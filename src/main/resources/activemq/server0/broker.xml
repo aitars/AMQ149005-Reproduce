@@ -35,6 +35,10 @@ under the License.
 
       <cluster-password>secret</cluster-password>
 
+      <remoting-incoming-interceptors>
+         <class-name>com.havi.intercept.InterceptBulkProperty</class-name>
+      </remoting-incoming-interceptors>
+
       <ha-policy>
          <replication>
             <master>
