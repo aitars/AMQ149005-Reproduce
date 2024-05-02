@@ -55,7 +55,7 @@ public class InterceptBulkProperty implements Interceptor {
          }
 
          if (propsSize >= 200000) {
-            logger.warn("Got message with cumulated property size {} for address {} from {}.", propsSize, msg.getAddress(), connection.getRemoteAddress());
+            logger.warn("Got message with cumulated property size {} for address {} from {}.", propsSize*2, msg.getAddress(), connection.getRemoteAddress());
             logger.warn("Body first 256 characters: {}", StringUtils.left(msg.getStringBody(), 256));
             for (SimpleString propName : msg.getPropertyNames()) {
                String propValue = msg.getStringProperty(propName);
